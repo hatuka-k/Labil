@@ -1,8 +1,5 @@
 class RegistrationsController < ApplicationController
-  def sellect1
-	@locations = Location.all
-  end
-
-  def sellect2
+  def index
+	  @locations = Location.all
   end
 end

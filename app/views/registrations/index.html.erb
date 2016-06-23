@@ -4,8 +4,8 @@
 <!--<p>Find me in app/views/registrations/index.html.erb</p>-->
 <p>
 	<% i = 0%>
-	<% colors = ['red', 'green', 'blue']%>
-	<% for location in @locations %>
+	<% colors = ['red', 'green', 'blue', 'red', 'green', 'blue']%>
+	<% @locations.each do |location| %>
 		<input type = "button" value = <%=location.name %>  class="btn" style = "width: 200px;height: 150px; font-size:1.8em; background: <%= colors[i]%>; color:white;">
 		<%i = i + 1%>
 	<% end %>
