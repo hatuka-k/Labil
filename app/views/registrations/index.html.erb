@@ -2,20 +2,28 @@
 <script src="./jquery.min.js"></script>
 <script src="./bootstrap-modal.js"></script>
 <script src="./bootstrap-transition.js"></script>;
+<script type ="text/javascript" src="./registrations.js"></script>
 <%= stylesheet_link_tag    "index", :media => "all" %>
 <h1>今、どこにいる？</h1>
 
 <!--<p>Find me in app/views/registrations/index.html.erb</p>-->
 <p>
+	<%= link_to "a", registrations_regist_path()  %>
+	<%= link_to "a", topviews_index_path()  %>
 	<% i = 0%>
 	<% colors = ["#cc3333", "#ff9933", "#669900", "#3366cc",'red', 'green', 'blue']%>
 	<div class="button">
-	<% @locations.each do |location| %>
+		<!--<input type="button" value="在室" class="btn" onclick="href = topviews_index_path" style="width: 200px;height: 150px; font-size:1.8em; background: <%= colors[0]%>; color:white;">-->
+		<button_to "在室", topviews_index_path></button_to>
+		<input type="button" value="学内" class="btn" onclick="href = registrations_index_path" style="width: 200px;height: 150px; font-size:1.8em; background: <%= colors[1]%>; color:white;">
+		<input type="button" value="外出" class="btn" style="width: 200px;height: 150px; font-size:1.8em; background: <%= colors[2]%>; color:white;">
+		<input type="button" value="帰宅" class="btn" style="width: 200px;height: 150px; font-size:1.8em; background: <%= colors[3]%>; color:white;">
+	<!--<% @locations.each do |location| %>
 		<% if location.category == 0 and i < 4 then %>
 			<input type = "button" value = <%=location.name %>  class="btn" style = "width: 200px;height: 150px; font-size:1.8em; background: <%= colors[i]%>; color:white;">
 			<%i = i + 1%>
 		<% end %>
-	<% end %>
+	<% end %>-->
 	</div>
 		
 	<!--<% @locations.each do |location| %>

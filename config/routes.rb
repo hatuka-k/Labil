@@ -5,9 +5,6 @@ Rails.application.routes.draw do
   get 'registrations/regist'
 
   get 'topviews/index'
-  get 'registrations/sellect2'
-
-  get 'registrations/hello'
 
   devise_for :users
 
