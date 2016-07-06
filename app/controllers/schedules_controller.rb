@@ -9,7 +9,6 @@ class SchedulesController < ApplicationController
   # GET /schedules/1
   # GET /schedules/1.json
   def show
-    @schedule = Schedule.find(params[:id]) 
   end
 
   # GET /schedules/new
@@ -22,31 +21,25 @@ class SchedulesController < ApplicationController
     #render :text=>'edit'
   end
   
-  # POST /schedules
-  # POST /schedules.json
-  def create
-    @schedule = Schedule.new(schedule_params)
-    
-    respond_to do |format|
-      if @schedule.save
-        sign_in @schedule
-        #redirect_to schedules_path, notice: "#{@schedule.start_time}を登録しました。"
-        format.html {redirect_to @schedule, notice: 'Schedule was successfully created.'}
-        format.json {render :show, status: :created, location: @schedule}
-      else
-        #render :new
-        format.html {render :new}
-        format.json {render json: @schedule.errors, status: :unprocessable_entity}
-      end
-    end
-  end
+  
 
   # POST /schedules
   # POST /schedules.json
   def create
     @schedule = Schedule.new(schedule_params)
+    @schedule.flag=3 # その他
+    cemester=@schedule.event_end - @schedule.event_start
     
-    print @schedule.venue
+    #dayly
+    if (cemester/86400).to_i == 0 then
+      @schedule.flag=1    
+    else
+    end
+    #weekly
+    if (cemester/86400).to_i == 7 then
+      @schedule.flag=2
+    else
+    end
     
     respond_to do |format|
 
@@ -63,8 +56,24 @@ class SchedulesController < ApplicationController
   # PATCH/PUT /schedules/1
   # PATCH/PUT /schedules/1.json
   def update
+    
+    #@schedule.flag=5
+    
     respond_to do |format|
-      if @schedule.update(schedule_params)
+      cemester=@schedule.event_end - @schedule.event_start
+      #dayly
+      if (cemester/86400).to_i == 0 then
+        @schedule.flag=1
+      else        
+      end            
+      #weekly
+      if (cemester/86400).to_i == 7 then
+        @schedule.flag=2
+      else        
+      end
+
+           
+      if @schedule.update(schedule_params)      
         format.html { redirect_to @schedule, notice: 'Schedule was successfully updated.' }
         format.json { render :show, status: :ok, location: @schedule }
       else
@@ -84,10 +93,7 @@ class SchedulesController < ApplicationController
     end
   end
   
-  
-  def current_member
-    @current_member ||= Member.find_by(id: session[:id])
-  end
+
   
   
   private
