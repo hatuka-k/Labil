@@ -9,6 +9,7 @@ class SchedulesController < ApplicationController
   # GET /schedules/1
   # GET /schedules/1.json
   def show
+    @schedule = Schedule.find(params[:id]) 
   end
 
   # GET /schedules/new
@@ -44,8 +45,11 @@ class SchedulesController < ApplicationController
   # POST /schedules.json
   def create
     @schedule = Schedule.new(schedule_params)
-
+    
+    print @schedule.venue
+    
     respond_to do |format|
+
       if @schedule.save
         format.html { redirect_to @schedule, notice: 'Schedule was successfully created.' }
         format.json { render :show, status: :created, location: @schedule }
@@ -81,18 +85,25 @@ class SchedulesController < ApplicationController
   end
   
   
+  def current_member
+    @current_member ||= Member.find_by(id: session[:id])
+  end
+  
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_schedule
       @schedule = Schedule.find(params[:id])
     end
 
-    def schedule_params
-      params.require(:schedule).permit(:member_id, :event_start, :event_end, :venue)
+    def schedule_params   
+      params.require(:schedule).permit(:member_id, :event_start, :event_end, :venue, :flag)
     end
   
     # Never trust parameters from the scary internet, only allow the white list through.
     #def schedule_params
     #  params.require(:schedule).permit(:member_id, :event_start, :event_end, :venue)
     #end
+    
+    
 end
