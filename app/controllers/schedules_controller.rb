@@ -31,7 +31,6 @@ class SchedulesController < ApplicationController
     @schedule = Schedule.new(schedule_params)
     @schedule.member_id = current_member.id
     #@schedule.flag=1 # dayly
-    
     respond_to do |format|
 
       if @schedule.save

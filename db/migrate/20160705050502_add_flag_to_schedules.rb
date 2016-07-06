@@ -1,5 +1,5 @@
 class AddFlagToSchedules < ActiveRecord::Migration
   def change
-    add_column :schedules, :flag, :integer, :default => 0 #1:dayly , 2:weekly , 3:monthly , 0:others
+    add_column :schedules, :flag, :integer, :default => 0  #0:dayly , 1:weekly , 2:monthly , 3:others
   end
 end
