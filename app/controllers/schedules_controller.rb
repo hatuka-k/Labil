@@ -30,7 +30,7 @@ class SchedulesController < ApplicationController
   def create
     @schedule = Schedule.new(schedule_params)
     @schedule.member_id = current_member.id
-    #@schedule.flag=1 # dayly
+    @schedule.flag=0 # daily
     respond_to do |format|
 
       if @schedule.save
