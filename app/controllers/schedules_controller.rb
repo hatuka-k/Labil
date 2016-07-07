@@ -5,8 +5,9 @@ class SchedulesController < ApplicationController
 
   # GET /schedules.json
   def index
-    @schedules = Schedule.all
-  end
+    #@schedules = Schedule.all
+    @schedules = Schedule.where(member_id: current_member.id)
+   end
 
   # GET /schedules/1
   # GET /schedules/1.json
@@ -20,9 +21,7 @@ class SchedulesController < ApplicationController
 
   # GET /schedules/1/edit
   def edit
-    #render :text=>'edit'
   end
-  
   
 
   # POST /schedules
@@ -47,10 +46,8 @@ class SchedulesController < ApplicationController
   # PATCH/PUT /schedules/1.json
   def update
     respond_to do |format|
-      @schedule.member_id = current_member.id
       @schedule.flag=0
-      
-      if @schedule.update(schedule_params)      
+      if @schedule.update(schedule_params)     
         format.html { redirect_to @schedule, notice: 'Schedule was successfully updated.' }
         format.json { render :show, status: :ok, location: @schedule }
       else
@@ -83,10 +80,6 @@ class SchedulesController < ApplicationController
       params.require(:schedule).permit(:member_id, :event_start, :event_end, :venue, :flag)
     end
   
-    # Never trust parameters from the scary internet, only allow the white list through.
-    #def schedule_params
-    #  params.require(:schedule).permit(:member_id, :event_start, :event_end, :venue)
-    #end
-    
+    # Never trust parameters from the scary internet, only allow the white list through.    
     
 end
