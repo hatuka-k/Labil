@@ -7,8 +7,7 @@ class SchedulesController < ApplicationController
   def index
     #@schedules = Schedule.all
     @schedules = Schedule.where(member_id: current_member.id)
-    #@schedules = current_member.schedules.all
-  end
+   end
 
   # GET /schedules/1
   # GET /schedules/1.json
