@@ -45,12 +45,12 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Labil</a>
+        <a class="navbar-brand" href="<%= root_path %>">Labil</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Link1", "/path1"  %></li>
-            <li><%= link_to "Link2", "/path2"  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
+            <li><%= link_to "メンバ一覧", members_path  %></li>
+            <li><%= link_to "メッセージ一覧", messages_path  %></li>
+            <li><%= link_to "スケジュール一覧", schedules_path  %></li>
             <li><%= link_to "signin", signin_path  %></li>
             <li><%= link_to "signout", signout_path, method: "delete"  %></li>
             <% if signed_in? %>
