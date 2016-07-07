@@ -5,7 +5,9 @@ class SchedulesController < ApplicationController
 
   # GET /schedules.json
   def index
-    @schedules = Schedule.all
+    #@schedules = Schedule.all
+    @schedules = Schedule.where(member_id: current_member.id)
+    #@schedules = current_member.schedules.all
   end
 
   # GET /schedules/1
@@ -47,7 +49,7 @@ class SchedulesController < ApplicationController
   # PATCH/PUT /schedules/1.json
   def update
     respond_to do |format|
-      @schedule.member_id = current_member.id
+      #@schedule.member_id = current_member.id
       @schedule.flag=0
       
       if @schedule.update(schedule_params)      
@@ -77,6 +79,7 @@ class SchedulesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_schedule
       @schedule = Schedule.find(params[:id])
+      #@schedule = current_member.schedules.find(params[:id])
     end
 
     def schedule_params   
