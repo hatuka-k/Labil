@@ -3,38 +3,46 @@
 <script src="./bootstrap-modal.js"></script>
 <script src="./bootstrap-transition.js"></script>
 
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+setTimeout("location.reload()",1000*300);
+//-->
+</SCRIPT>
 <h1>○○Lab</h1>
 
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Location</th>
-				<th>Memo</th>
-			</tr>
-		</thead>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>在室</th>
+			<th>学内</th>
+			<th>帰宅</th>
+			<th>Message</th>
+		</tr>
+	</thead>
 
-		<tbody>
-			<% for var in @stats do %>
-			<tr>
-<<<<<<< HEAD
-				<td><%= link_to @members.find(status.member_id).name, registrations_index_path(status.id)  %>
-=======
-				<td><%= link_to var[:member] , registrations_index_path(var) %>
->>>>>>> 32f2afedc9353029c5ec93211102e2c0b7980154
-				</td>
-				<td><%= var[:location] %></td>
-				<td>
-					<% if !var[:message].nil? %>
-				<button type="button" class="btn btn-default"  data-toggle="popover" title="message" data-content= <%= var[:message] %>  >
-					<% end%>
-					<!--%= image_tag "/assets/icon.png", :size => '10x10' %-->
-          <i class="fa fa-comment-o"></i>
-				</button>
-				<script>
-					$(function() {
-						$('[data-toggle="popover"]').popover();
+	<tbody>
+		<% for var in @stats do %>
+		<tr>
+			<td><%= link_to var[:member] , registrations_index_path(var[:id]) %> </td>
+			<td> <% if var[:location_category] == 0 %><i class="fa fa-user"></i><br><% end %> </td>
+			<td><% if var[:location_category] == 1 %><i class="fa fa-user"></i><br><%= var[:location] %> <% end %></td>
+			<td><% if var[:location_category] == 2 %><i class="fa fa-user"></i><br><%= var[:location] %> <% end %></td>
+			<td> <% if !var[:message].nil? %>
+			<button type="button" class="btn btn-default"  data-toggle="popover" data-trigger="hover"  data-content= "<%= var[:message] %>"  >
+				<i class="fa fa-comment-o"></i>
+				<% end%>
+				<!--%= image_tag "/assets/icon.png", :size => '10x10' %-->
+				
+			</button>
+			<script>
+				$(function() {
+					$('[data-toggle="popover"]').popover();
+					$("[data-toggle=popover]").on('hover', function(e) {
+						$("[data-toggle=popover]").not(this).popover('hide');
 					});
-				</script> <% end %>
-		</tbody>
-	</table>
+				});
+			</script> <% end %>
+	</tbody>
+</table>
