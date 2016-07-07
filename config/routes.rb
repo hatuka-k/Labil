@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :schedules
   resources :members
@@ -8,13 +9,12 @@ Rails.application.routes.draw do
   match '/signin', to:'sessions#new',    via: 'get', as: 'signin'
   match '/signout', to:'sessions#destroy',    via: 'delete', as: 'signout'
 
-  get 'registrations/index'
+  
+  get 'registrations/index/:id' => 'registrations#index', as: 'registrations_index'
   get 'registrations/regist'
+ 
 
   get 'topviews/index'
-  get 'registrations/sellect2'
-
-  get 'registrations/hello'
 
   root to: "topviews#index"
 

@@ -15,11 +15,6 @@ Location.create( :name=> 'ALラボ', :category=> '1')
 Location.create( :name=> '小池(崇)研', :category=> '2')
 Location.create( :name=> '藤田研', :category=> '2')
 
-#Member.create( name: 'Abe', password:"0000", password_confirmation: "0000")
-#Member.create( name: 'Ito', password:"0000", password_confirmation: "0000")
-#Member.create( name: 'Sato', password:"0000", password_confirmation: "0000")
-#Member.create( name: 'Suzuki', password:"0000", password_confirmation: "0000")
-
 ActiveRecord::Base.transaction do
 location = Location.last
 member = Member.new(name: "Suzuki", email: "test@test.com", password:"0000", password_confirmation: "0000")
