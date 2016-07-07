@@ -1,14 +1,23 @@
 Rails.application.routes.draw do
+
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :schedules
   resources :members
   resources :messages
-  get 'registrations/index'
+
+  match '/signup', to:'members#new',    via: 'get'
+  match '/signin', to:'sessions#new',    via: 'get', as: 'signin'
+  match '/signout', to:'sessions#destroy',    via: 'delete', as: 'signout'
+
+  
+  get 'registrations/index/:id' => 'registrations#index', as: 'registrations_index'
   get 'registrations/regist'
+ 
 
   get 'topviews/index'
 
-  devise_for :users
-
   root to: "topviews#index"
+
 
   match ':controller(/:action(/:id))', via:[:get, :post, :patch]
 

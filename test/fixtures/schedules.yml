@@ -2,12 +2,12 @@
 
 one:
   member_id: 1
-  event_start: 2016-05-26 14:40:22
-  event_end: 2016-05-26 14:40:22
+  event_start: 2016-06-23 12:22:18
+  event_end: 2016-06-23 12:22:18
   venue: MyString
 
 two:
   member_id: 1
-  event_start: 2016-05-26 14:40:22
-  event_end: 2016-05-26 14:40:22
+  event_start: 2016-06-23 12:22:18
+  event_end: 2016-06-23 12:22:18
   venue: MyString

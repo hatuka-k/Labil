@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160623055021) do
+ActiveRecord::Schema.define(version: 20160628121103) do
 
   create_table "locations", force: :cascade do |t|
     t.string   "name"
@@ -22,10 +22,15 @@ ActiveRecord::Schema.define(version: 20160623055021) do
 
   create_table "members", force: :cascade do |t|
     t.string   "name"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "pin_code"
+    t.string   "password_digest"
+    t.string   "email"
+    t.string   "remember_token"
   end
+
+  add_index "members", ["remember_token"], name: "index_members_on_remember_token"
 
   create_table "messages", force: :cascade do |t|
     t.integer  "member_id"
