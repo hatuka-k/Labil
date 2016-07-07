@@ -17,11 +17,7 @@
 		<tbody>
 			<% for var in @stats do %>
 			<tr>
-<<<<<<< HEAD
-				<td><%= link_to @members.find(status.member_id).name, registrations_index_path(status.id)  %>
-=======
 				<td><%= link_to var[:member] , registrations_index_path(var) %>
->>>>>>> 32f2afedc9353029c5ec93211102e2c0b7980154
 				</td>
 				<td><%= var[:location] %></td>
 				<td>
