@@ -21,9 +21,7 @@ class SchedulesController < ApplicationController
 
   # GET /schedules/1/edit
   def edit
-    #render :text=>'edit'
   end
-  
   
 
   # POST /schedules
@@ -50,7 +48,6 @@ class SchedulesController < ApplicationController
     respond_to do |format|
       #@schedule.member_id = current_member.id
       @schedule.flag=0
-      
       if @schedule.update(schedule_params)      
         format.html { redirect_to @schedule, notice: 'Schedule was successfully updated.' }
         format.json { render :show, status: :ok, location: @schedule }
@@ -78,7 +75,6 @@ class SchedulesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_schedule
       @schedule = Schedule.find(params[:id])
-      #@schedule = current_member.schedules.find(params[:id])
     end
 
     def schedule_params   
