@@ -24,4 +24,10 @@ module SessionsHelper
     self.current_member = nil
     cookies.delete(:remember_token)
   end
+
+  def authenticate_member!
+    if !signed_in?
+      redirect_to signin_path
+    end
+  end
 end

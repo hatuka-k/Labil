@@ -15,13 +15,19 @@
 		</thead>
 
 		<tbody>
-			<% @statuses.each do |status| %>
+			<% for var in @stats do %>
 			<tr>
+<<<<<<< HEAD
 				<td><%= link_to @members.find(status.member_id).name, registrations_index_path(status.id)  %>
+=======
+				<td><%= link_to var[:member] , registrations_index_path(var) %>
+>>>>>>> 32f2afedc9353029c5ec93211102e2c0b7980154
 				</td>
-				<td><%= @locations.find(status.location_id).name %></td>
+				<td><%= var[:location] %></td>
 				<td>
-				<button type="button" class="btn btn-default" data-toggle="popover" title="memo" data-content= <%= @messages.find_by(member_id: status.member_id).message %>>
+					<% if !var[:message].nil? %>
+				<button type="button" class="btn btn-default"  data-toggle="popover" title="message" data-content= <%= var[:message] %>  >
+					<% end%>
 					<!--%= image_tag "/assets/icon.png", :size => '10x10' %-->
           <i class="fa fa-comment-o"></i>
 				</button>

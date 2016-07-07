@@ -1,5 +1,7 @@
 class SchedulesController < ApplicationController
+  before_filter :authenticate_member!
   before_action :set_schedule, only: [:show, :edit, :update, :destroy]
+
 
   # GET /schedules.json
   def index
@@ -21,31 +23,16 @@ class SchedulesController < ApplicationController
     #render :text=>'edit'
   end
   
-  # POST /schedules
-  # POST /schedules.json
-  def create
-    @schedule = Schedule.new(schedule_params)
-    
-    respond_to do |format|
-      if @schedule.save
-        sign_in @schedule
-        #redirect_to schedules_path, notice: "#{@schedule.start_time}を登録しました。"
-        format.html {redirect_to @schedule, notice: 'Schedule was successfully created.'}
-        format.json {render :show, status: :created, location: @schedule}
-      else
-        #render :new
-        format.html {render :new}
-        format.json {render json: @schedule.errors, status: :unprocessable_entity}
-      end
-    end
-  end
+  
 
   # POST /schedules
   # POST /schedules.json
   def create
     @schedule = Schedule.new(schedule_params)
-
+    @schedule.member_id = current_member.id
+    @schedule.flag=0 # daily
     respond_to do |format|
+
       if @schedule.save
         format.html { redirect_to @schedule, notice: 'Schedule was successfully created.' }
         format.json { render :show, status: :created, location: @schedule }
@@ -60,7 +47,10 @@ class SchedulesController < ApplicationController
   # PATCH/PUT /schedules/1.json
   def update
     respond_to do |format|
-      if @schedule.update(schedule_params)
+      @schedule.member_id = current_member.id
+      @schedule.flag=0
+      
+      if @schedule.update(schedule_params)      
         format.html { redirect_to @schedule, notice: 'Schedule was successfully updated.' }
         format.json { render :show, status: :ok, location: @schedule }
       else
@@ -80,6 +70,8 @@ class SchedulesController < ApplicationController
     end
   end
   
+
+  
   
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -87,12 +79,14 @@ class SchedulesController < ApplicationController
       @schedule = Schedule.find(params[:id])
     end
 
-    def schedule_params
-      params.require(:schedule).permit(:member_id, :event_start, :event_end, :venue)
+    def schedule_params   
+      params.require(:schedule).permit(:member_id, :event_start, :event_end, :venue, :flag)
     end
   
     # Never trust parameters from the scary internet, only allow the white list through.
     #def schedule_params
     #  params.require(:schedule).permit(:member_id, :event_start, :event_end, :venue)
     #end
+    
+    
 end

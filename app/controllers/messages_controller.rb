@@ -1,11 +1,11 @@
 class MessagesController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_member!, except: [:index]
   before_action :set_message, only: [:show, :edit, :update, :destroy]
 
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.all
+    @messages = Message.order(:created_at).reverse_order
   end
 
   # GET /messages/1
@@ -26,7 +26,7 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
     @message = Message.new(message_params)
-    @message.member_id = current_user.id
+    @message.member_id = current_member.id
     
     respond_to do |format|
       if @message.save
