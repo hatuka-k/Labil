@@ -52,6 +52,9 @@
             <li><%= link_to "メッセージ一覧", messages_path  %></li>
             <% if signed_in? %>
               <li><%= link_to "スケジュール一覧", schedules_path  %></li>
+              <% if current_member.id == 1%>
+                <li><%= link_to "管理者ページ", admin_path%></li>
+              <% end %>
             <% end %>
           </ul>
           <ul class="nav navbar-nav navbar-right">
