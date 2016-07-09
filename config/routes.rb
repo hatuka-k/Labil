@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'administrator/index', as: 'admin'
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :schedules
   resources :members

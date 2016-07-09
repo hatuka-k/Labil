@@ -43,6 +43,8 @@
   </tbody>
 </table>
 
+<% if signed_in? && current_member.id == 1 %>
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_member_path,
             :class => 'btn btn-primary' %>
+<% end %>
