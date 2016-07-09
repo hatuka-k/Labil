@@ -1,7 +1,5 @@
 Location.create( :name=> '在室', :category=> '0')
-Location.create( :name=> '学内', :category=> '0')
-Location.create( :name=>'外出', :category=> '0')
-Location.create( :name=> '帰宅', :category=> '0')
+Location.create( :name=> '帰宅', :category=> '4')
 Location.create( :name=> 'W101', :category=> '1')
 Location.create( :name=> 'W102', :category=> '1')
 Location.create( :name=> 'W103', :category=> '1')

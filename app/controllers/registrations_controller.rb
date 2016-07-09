@@ -35,8 +35,7 @@ class RegistrationsController < ApplicationController
   end
   def kitaku
     @stat = Status.find(params[:id])
-    @loc = Location.where("category = '4'")
-    @stat.location_id = @loc.id;
+    @stat.location_id = 2;
     if @stat.save
       redirect_to topviews_index_path
     end
