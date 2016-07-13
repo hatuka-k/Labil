@@ -3,7 +3,7 @@
 <script src="./jquery.min.js"></script>
 <script src="./bootstrap-modal.js"></script>
 <script src="./bootstrap-switch.js"></script>
-<script src="./bootstrap-transition.js"></script>;
+<script src="./bootstrap-transition.js"></script>
 <%= stylesheet_link_tag    "index", :media => "all" %>
 
 <p>
@@ -15,7 +15,7 @@
 			</button>
 			<ul class = "dropdown-menu">
 				<%=@labos.each do |labo|%>
-					<li><a href = "#" ><%=labo.name%></a></li>
+					<li><a href = <%=@path %>/<%=labo.id%>><%=labo.name%></a></li>
 				<% end %>
 			</ul>
 		</div>
@@ -25,7 +25,7 @@
 			</button>
 			<ul class = "dropdown-menu">
 				<%=@classrooms.each do |classroom|%>
-					<li><a href = "#" ><%=classroom.name%></a></li>
+					<li><a href = <%=@path %>/<%=classroom.id%>><%=classroom.name%></a></li>
 				<% end %>
 			</ul>
 		</div>

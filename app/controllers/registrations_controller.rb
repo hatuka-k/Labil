@@ -14,21 +14,29 @@ class RegistrationsController < ApplicationController
   #put registrations/zaishitsu  
   def zaishitsu
     @stat = Status.find(params[:id])
-    @stat.location_id = 1;
+    @stat.location_id = 1
     if @stat.save
       redirect_to topviews_index_path
     end
   end
   def gakunai
-    @classrooms = Location.where("category = '1'")
-    @labos = Location.where("category = '2'")
+    @classrooms = Location.where("category = '2'")
+    @labos = Location.where("category = '3'")
     @stat = Status.find(params[:id])
-    @stat.location_id = 1;
+    @stat.location_id = 2
     @stat.save
+    @path = "/registrations/gakunai/"+params[:id]+"/registgakunai/"
+  end
+  def registgakunai
+    @stat = Status.find(params[:id])
+    @stat.location_id =params[:loc]
+    if @stat.save
+      redirect_to topviews_index_path
+    end
   end
   def gaishutsu
     @stat = Status.find(params[:id])
-    @stat.location_id = 1;
+    @stat.location_id = 1
     if @stat.save
       redirect_to topviews_index_path
     end
