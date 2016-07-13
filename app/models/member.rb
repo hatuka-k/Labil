@@ -1,7 +1,7 @@
 class Member < ActiveRecord::Base
   before_save {self.email = email.downcase}
   before_create :create_remember_token
-
+ 
   has_one :user
 
   has_many :statuses
@@ -11,6 +11,7 @@ class Member < ActiveRecord::Base
 
   has_secure_password
   validates :password, length: {is:4}
+  validates :name, presence: true
 
   def Member.new_remember_token
     SecureRandom.urlsafe_base64
