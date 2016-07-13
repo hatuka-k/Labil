@@ -1,24 +1,27 @@
 <link rel="stylesheet" href="./bootstrap.css">
 <script src="./jquery.min.js"></script>
 <script src="./bootstrap-modal.js"></script>
-<script src="./bootstrap-transition.js"></script>;
-<script type ="text/javascript" src="./registrations.js"></script>
+<script src="./bootstrap-transition.js"></script>
 <%= stylesheet_link_tag    "index", :media => "all" %>
 <h1><%= @name.name %>さん、今どこにいる？</h1>
-
+<h4>現在、<%= @nloc.name %>に登録されています</h4>
 <!--<p>Find me in app/views/registrations/index.html.erb</p>-->
 <p>
-	<!--<% colors = ["#cc3333", "#ff9933", "#669900", "#3366cc",'red', 'green', 'blue']%>
-	<form id = 'form' name = 'form' action = "topviews_index_path">
-		<% i = 0 %>
-		<%= @locations.each do |location| %>
-			<button type = 'submit' name="action" value = <%= location.id %> class="btn" style="width: 200px;height: 150px; font-size:1.8em; background: <%= colors[i]%>; color:white;"><%= location.name %></button>
-			<% i = i + 1%>
-		<% end %>
-	</form>-->
-	
-	<%= @locations.each do |location| %>
-		<input id = <%= location.id %> name =<%= location.name %> type = "radio" value = <%= location.name%> />
-		<label for = <%= location.id %>><%= location.name%></label>
+	<div style="display:inline-flex">
+	<% colors = ["#cc3333", "#ff9933", "#669900", "#3366cc",'red', 'green', 'blue']%>
+	<% id = 0 %>
+	<%= form_tag @zaishitsu, :method=> :put do%>
+		<%= submit_tag "在室", :name => "zaishitsu", :style => "width: 200px; height: 150px; font-size:1.8em; background: #cc3333;color:white" %>
 	<% end %>
+	<%= form_tag @gakunai, :method=> :put do%>
+		<%= submit_tag "学内", :name => "gakunai", :style => "width: 200px; height: 150px; font-size:1.8em; background: #ff9933;color:white" %>
+	<% end %>
+	<%= form_tag @gaishutsu, :method=> :put do%>
+		<%= submit_tag "外出", :name => "gaishutsu", :style => "width: 200px; height: 150px; font-size:1.8em; background: #669900;color:white" %>
+	<% end %>
+	<%= form_tag @kitaku, :method=> :put do%>
+		<%= submit_tag "帰宅", :name => "kitaku", :style => "width: 200px; height: 150px; font-size:1.8em; background: #3366cc;color:white" %>
+	<% end %>
+	</div>
+
 </p>

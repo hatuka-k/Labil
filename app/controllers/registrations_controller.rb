@@ -1,13 +1,53 @@
 class RegistrationsController < ApplicationController
   def index
-	  @locations = Location.where(category: 0)
+	  @locations = Location.all
 	  @stat = Status.find(params[:id])
 	  @members = Member.all
-	  @user = Status.find(1)
 	  @name = Member.find(@stat.member_id)
-	  @user.update_attribute(:location_id, 0)
+	  @nloc = Location.find(@stat.location_id)
+	  @zaishitsu = "/registrations/zaishitsu/"+params[:id]
+	  @gakunai = "/registrations/gakunai/"+params[:id]
+	  @gaishutsu = "/registrations/gaishutsu/"+params[:id]
+	  @kitaku = "/registrations/kitaku/"+params[:id]
   end
   
+  #put registrations/zaishitsu  
+  def zaishitsu
+    @stat = Status.find(params[:id])
+    @stat.location_id = 1
+    if @stat.save
+      redirect_to topviews_index_path
+    end
+  end
+  def gakunai
+    @classrooms = Location.where("category = '2'")
+    @labos = Location.where("category = '3'")
+    @stat = Status.find(params[:id])
+    @stat.location_id = 2
+    @stat.save
+    @path = "/registrations/gakunai/"+params[:id]+"/registgakunai/"
+  end
+  def registgakunai
+    @stat = Status.find(params[:id])
+    @stat.location_id =params[:loc]
+    if @stat.save
+      redirect_to topviews_index_path
+    end
+  end
+  def gaishutsu
+    @stat = Status.find(params[:id])
+    @stat.location_id = 1
+    if @stat.save
+      redirect_to topviews_index_path
+    end
+  end
+  def kitaku
+    @stat = Status.find(params[:id])
+    @stat.location_id = 2;
+    if @stat.save
+      redirect_to topviews_index_path
+    end
+  end
 
   def new
     @locations = Location.all
