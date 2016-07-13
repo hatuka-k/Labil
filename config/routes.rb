@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   put "registrations/zaishitsu/:id" => 'registrations#zaishitsu', :as=> 'registrations_zaishitsu' 
   put "registrations/gakunai/:id" => 'registrations#gakunai', :as=> 'registrations_gakunai' 
   get "registrations/gakunai/:id/registgakunai/:loc" => 'registrations#registgakunai', :as=> 'registrations_registgakunai' 
+  get "registrations/gaishutsu/:id/registgaishutsu/:loc" => 'registrations#registgaishutsu', :as=> 'registrations_registgaishutsu' 
   put "registrations/gaishutsu/:id" => 'registrations#gaishutsu', :as=> 'registrations_gaishutsu' 
   put "registrations/kitaku/:id" => 'registrations#kitaku', :as=> 'registrations_kitaku' 
   
