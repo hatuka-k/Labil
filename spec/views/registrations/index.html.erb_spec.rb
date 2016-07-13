@@ -1,16 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe "registrations/index", type: :view do
-  before do
-    @user = FactoryGirl.build(:member)
-    @location = FactoryGirl.build(:location)
-    @user.save
-    @location.save
+  subject do
+    render partial: "registrations/index"
+    rendered
   end
- 
-  it "名前さん、今どこですか" do
-    assign(:member, :location)
-    render :template => "registrations/index.html.erb"
-    except(rendered).to match /tsukinaga/
+  
+  descrive "session info" do
+    context "user not signed in" do
+      it{should have_text I18n.t('registration.index.sign_in')}
+    end
   end
 end

@@ -36,10 +36,14 @@ status2 = Status.new(member_id: member.id, location_id: location.id)
 status2.save!
 end
 
+
+Message.create( member_id: 1, message: "test_1")
+Message.create( member_id: 2, message: "test_2")
+Message.create( member_id: 1, message: "test_1snd")
+Message.create( member_id: 3, message: "test_3")
 Message.create( member_id: 1, message: "Hello Everyone!")
 Message.create( member_id: 2, message: "This is test sentence")
 Message.create( member_id: 1, message: "I wanna go home...")
-
 
 Schedule.create(:member_id => 1, :event_start => 'Mon, 30 May 2016 09:30:00', :event_end => 'Mon, 30 May 2016 11:00:00', :venue => 'A-1',:flag => 0)
 Schedule.create(:member_id => 1, :event_start => 'Mon, 30 May 2016 13:30:00', :event_end => 'Mon, 30 May 2016 15:00:00', :venue => 'W101',:flag => 0)
