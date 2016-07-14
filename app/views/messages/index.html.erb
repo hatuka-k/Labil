@@ -5,7 +5,6 @@
 <table border = 1>
   <thead>
     <tr>
-      <th>Message_id</th>
       <th>Name</th>
       <th>Message</th>
       <th colspan="2"></th>
@@ -15,7 +14,6 @@
   <tbody>
     <% @messages.each do |message| %>
       <tr>
-        <td><%= message.id %></td>
         <td><%= Member.find(message.member_id).name %></td>
         <td><%= message.message %></td>
         <td><%= link_to 'Show', message %></td>
