@@ -1,4 +1,4 @@
-<%= form_for(@schedule) do |f| %>
+<%= simple_form_for @schedule, :html => { :class => 'form_horizontal'} do |f| %>
   <% if @schedule.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
@@ -10,24 +10,26 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :member_id %><br>
-    <%= f.number_field :member_id %>
+  
+  <div class="form-group">
+    <%= f.label :event_start, "開始日時" %><br>
+    <%= f.datetime_select :event_start, :minute_step => 5 %>
   </div>
-  <div class="field">
-    <%= f.label :event_start %><br>
-    <%= f.datetime_select :event_start %>
+  <div class="form-group">
+    <%= f.label :event_end, "終了日時" %><br>
+    <%= f.datetime_select :event_end, :minute_step => 5 %>
   </div>
-  <div class="field">
-    <%= f.label :event_end %><br>
-    <%= f.datetime_select :event_end %>
+  <div>
+  	<%= f.label :flag, "繰り返し" %><br>
+  	<%= f.select :flag, { '1日': 0, '毎週': 1, '毎月': 2 } %>
   </div>
-  <div class="field">
-    <%= f.label :venue %><br>
+  <div class="form-group">
+    <%= f.label :venue, "場所" %><br>
     <%= f.text_field :venue %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+    			schedules_path, :class => 'btn btn-default' %>
   </div>
 <% end %>

@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Schedules</h1>
+<h1>My schedules</h1>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
-      <th>Member</th>
-      <th>Event_start</th>
-      <th>Event_end</th>
-      <th>Venue</th>
+      <th>開始日時</th>
+      <th>終了日時</th>
+      <th>場所</th>
+      <th>繰り返し</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,10 +16,18 @@
   <tbody>
     <% @schedules.each do |schedule| %>
       <tr>
-        <td><%= schedule.member_id %></td>
-        <td><%= schedule.event_start %></td>
-        <td><%= schedule.event_end %></td>
+        <td><%= schedule.event_start.strftime("%Y年%m月%d日 %H:%M") %></td>
+        <td><%= schedule.event_end.strftime("%Y年%m月%d日 %H:%M") %></td>
         <td><%= schedule.venue %></td>
+        <td>
+        	<% if schedule.flag == 0 %>
+        		なし
+        	<% elsif schedule.flag == 1 %>
+        	毎週
+        	<% else %>
+        	毎月
+        	<% end %>
+        </td>
         <td><%= link_to 'Show', schedule %></td>
         <td><%= link_to 'Edit', edit_schedule_path(schedule) %></td>
         <td><%= link_to 'Destroy', schedule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -28,6 +36,6 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Schedule', new_schedule_path %>
+<div align="center">
+	<%= link_to 'New Schedule', new_schedule_path, :class => 'btn btn-primary' %>
+</div>
