@@ -27,8 +27,8 @@ setTimeout("location.reload()",1000*300);
 		<tr>
 			<td><%= link_to var[:member] , registrations_index_path(var[:id]) %> </td>
 			<td> <% if var[:location_category] == 0 %><i class="fa fa-user"></i><br><% end %> </td>
+			<td><% if var[:location_category] == 2 or var[:location_category] == 3 %><i class="fa fa-user"></i><br><%= var[:location] %> <% end %></td>
 			<td><% if var[:location_category] == 1 %><i class="fa fa-user"></i><br><%= var[:location] %> <% end %></td>
-			<td><% if var[:location_category] == 2 %><i class="fa fa-user"></i><br><%= var[:location] %> <% end %></td>
 			<td> <% if !var[:message].nil? %>
 			<button type="button" class="btn btn-default"  data-toggle="popover" data-trigger="hover"  data-content= "<%= var[:message] %>"  >
 				<i class="fa fa-comment-o"></i>

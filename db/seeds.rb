@@ -36,6 +36,7 @@ status2 = Status.new(member_id: member.id, location_id: location.id)
 status2.save!
 end
 
+
 Message.create( member_id: 1, message: "test_1")
 Message.create( member_id: 2, message: "test_2")
 Message.create( member_id: 1, message: "test_1snd")
