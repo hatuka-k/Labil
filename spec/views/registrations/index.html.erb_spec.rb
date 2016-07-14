@@ -6,7 +6,7 @@ RSpec.describe "registrations/index", type: :view do
     rendered
   end
   
-  descrive "session info" do
+  describe "session info" do
     context "user not signed in" do
       it{should have_text I18n.t('registration.index.sign_in')}
     end
