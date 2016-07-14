@@ -1,18 +1,45 @@
 require 'spec_helper'
 
 describe "Memberクラスのテスト" do
-  
-  before "ユーザーの登録" do
-    member = Member.new(name:'Hosei')
-    noname = Member.new(name:'')
+  describe "Association" do
+   it { should have_one(:user) }
+   it { should have_many(:statuses) }
+   it { should have_many(:locations) }
   end
+
+  context "ユーザー登録がされている場合" do
+    before "ユーザーの登録" do
+      member = Member.new(name: 'Suzuki', email: 'test@test.com', password: '0000')
+    end
   
-  it "nameが入っていれば有効" do
-    expect(member).to be_valid #nameが妥当であることを期待する
+    it "nameがセットされていること" do
+      expect(member.name).to be_valid
+    end
+
+    it "passwordがセットされていること" do
+      expect(member.password).to be_valid
+    end
   end
-  
-  it "nameがはいって無ければ無効" do
-    expect(noname).to_not be_valid
-    expect(noname.errors[:name]).to be_present #nameカラムに関するエラーメッセージの配列を返す
+
+  context "nameが設定されていない場合" do
+    before do
+      member = Member.new(name: '', email: 'test@test.com', password: '0000')
+    end
+
+    it "nameが入って無ければ無効" do
+      expect(member.name).to_not be_valid
+      expect(member.errors[:name]).to be_present #nameカラムに関するエラーメッセージの配列を返す
+    end
+  end
+
+  context "passwordが設定されていない場合" do
+    before "ユーザーの登録" do
+      member = Member.new(name: 'Suzuki', email: 'test@test.com', password: '')
+    end
+
+    it "passwordが入って無ければ無効" do
+      expect(member.password).to_not be_valid
+      expect(member.errors[:password]).to be_present
+    end
   end
 end

@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="./bootstrap.css">
+<link rel="stylesheet" href="bootstrap-dropdown.css">
+<script src="./jquery.min.js"></script>
+<script src="./bootstrap-modal.js"></script>
+<script src="./bootstrap-switch.js"></script>
+<script src="./bootstrap-transition.js"></script>
+<%= stylesheet_link_tag    "index", :media => "all" %>
+
+<p>
+	<div style="display:inline-flex">
+		<div class="btn-group" role="group" role="group">
+			<button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expandid"false" style="font-size:1.8em; background: #3366cc;color:white">
+				行き先 <span class="caret"></span>
+			</button>
+			<ul class = "dropdown-menu">
+				<%=@ikisakis.each do |ikisaki|%>
+					<li><a href = <%=@path %><%=ikisaki.id%>><%=ikisaki.name%></a></li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</p>
