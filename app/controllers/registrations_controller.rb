@@ -23,21 +23,14 @@ class RegistrationsController < ApplicationController
     @classrooms = Location.where("category = '2'")
     @labos = Location.where("category = '3'")
     @stat = Status.find(params[:id])
-    @path = "/registrations/gakunai/"+params[:id]+"/registgakunai/"
-  end
-  def registgakunai
-    @stat = Status.find(params[:id])
-    @stat.location_id =params[:loc]
-    if @stat.save
-      redirect_to topviews_index_path
-    end
+    @path = "/registrations/gakunai/"+params[:id]+"/regist/"
   end
   def gaishutsu
     @ikisakis = Location.where("category = '4'")
     @stat = Status.find(params[:id])
-    @path = "/registrations/gaishutsu/"+params[:id]+"/registgaishutsu/"
+    @path = "/registrations/gaishutsu/"+params[:id]+"/regist/"
   end
-  def registgaishutsu
+  def regist
     @stat = Status.find(params[:id])
     @stat.location_id =params[:loc]
     if @stat.save
