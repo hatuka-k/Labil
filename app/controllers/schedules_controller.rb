@@ -29,15 +29,18 @@ class SchedulesController < ApplicationController
   def create
     @schedule = Schedule.new(schedule_params)
     @schedule.member_id = current_member.id
-    @schedule.flag=0 # daily
     respond_to do |format|
-
-      if @schedule.save
-        format.html { redirect_to @schedule, notice: 'Schedule was successfully created.' }
-        format.json { render :show, status: :created, location: @schedule }
-      else
+      if @schedule.event_end-@schedule.event_start<0
         format.html { render :new }
         format.json { render json: @schedule.errors, status: :unprocessable_entity }
+      else
+        if @schedule.save
+          format.html { redirect_to @schedule, notice: 'Schedule was successfully created.' }
+          format.json { render :show, status: :created, location: @schedule }
+        else
+          format.html { render :new }
+          format.json { render json: @schedule.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -46,10 +49,14 @@ class SchedulesController < ApplicationController
   # PATCH/PUT /schedules/1.json
   def update
     respond_to do |format|
-      @schedule.flag=0
-      if @schedule.update(schedule_params)     
-        format.html { redirect_to @schedule, notice: 'Schedule was successfully updated.' }
-        format.json { render :show, status: :ok, location: @schedule }
+      if @schedule.update(schedule_params)  
+        if @schedule.event_end-@schedule.event_start<0
+          format.html { render :new }
+          format.json { render json: @schedule.errors, status: :unprocessable_entity }   
+        else
+          format.html { redirect_to @schedule, notice: 'Schedule was successfully updated.' }
+          format.json { render :show, status: :ok, location: @schedule }
+        end
       else
         format.html { render :edit }
         format.json { render json: @schedule.errors, status: :unprocessable_entity }
