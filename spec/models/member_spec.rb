@@ -1,15 +1,14 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "Memberクラスのテスト" do
   describe "Association" do
-   it { should have_one(:user) }
    it { should have_many(:statuses) }
    it { should have_many(:locations) }
   end
 
   context "ユーザー登録がされている場合" do
     before "ユーザーの登録" do
-      member = Member.new(name: 'Suzuki', email: 'test@test.com', password: '0000')
+      member = Member.new(name: 'Suzuki', email: 'test@test.com', password: '0000', password_confirmation: '0000')
     end
   
     it "nameがセットされていること" do
@@ -23,7 +22,7 @@ describe "Memberクラスのテスト" do
 
   context "nameが設定されていない場合" do
     before do
-      member = Member.new(name: '', email: 'test@test.com', password: '0000')
+      member = Member.new(name: '', email: 'test@test.com', password: '0000', password_confirmation: '0000')
     end
 
     it "nameが入って無ければ無効" do
@@ -34,7 +33,7 @@ describe "Memberクラスのテスト" do
 
   context "passwordが設定されていない場合" do
     before "ユーザーの登録" do
-      member = Member.new(name: 'Suzuki', email: 'test@test.com', password: '')
+      member = Member.new(name: 'Suzuki', email: 'test@test.com', password: '', password_confirmation: '')
     end
 
     it "passwordが入って無ければ無効" do

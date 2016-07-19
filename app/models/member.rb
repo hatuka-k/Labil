@@ -2,11 +2,8 @@ class Member < ActiveRecord::Base
   before_save {self.email = email.downcase}
   before_create :create_remember_token
  
-  has_one :user
-
   has_many :statuses
   has_many :locations, through: :statuses
-
   has_many :messages
 
   has_secure_password
