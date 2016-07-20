@@ -1,6 +1,8 @@
 <%= simple_form_for(:session, url: sessions_path) do |f| %>
   <%= f.input :email %>
-  <%= f.input :password%>
+  <%= f.input :password , :maxlength => "4"%>
+
+  <%= render :partial => 'keypad' %>
 
   <%= f.button :submit, :class => 'btn-primary' %>
 <% end %>

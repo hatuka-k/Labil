@@ -1,0 +1,27 @@
+
+  <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapseKeyPad" aria-expanded="false" aria-controls="collapseKeyPad">
+    <i class="fa fa-keyboard-o"></i>
+    keypad
+  </button>
+
+
+  <div class="collapse" id="collapseKeyPad">
+    <div class="well" id="padboard">
+      <div class="row">
+      <% for i in 1..9 do %>
+         <div class="col-xs-4 col-sm-4">
+           <button type="button" class="btn btn-default" id="keypad" onClick="pushKey(<%= i %>);"><%= i %></button>
+         </div>
+      <% end %>
+         <div class="col-xs-4 col-sm-4">
+           <button type="button" class="btn btn-default" id="keypad" onClick="pushKey(10);" ><i class="fa fa-arrow-circle-o-left"></i></button>
+           </div>
+         <div class="col-xs-4 col-sm-4">
+           <button type="button" class="btn btn-default" id="keypad" onClick="pushKey(0);" >0</button>
+         </div>
+         <div class="col-xs-4 col-sm-4">
+           <button type="submit" class="btn btn-default" id="keypad"><i class="fa fa-sign-in"></i></button>
+         </div>
+      </div>
+    </div>
+  </div>
