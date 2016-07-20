@@ -18,7 +18,7 @@ class SchedulesControllerTest < ActionController::TestCase
 
   test "should create schedule" do
     assert_difference('Schedule.count') do
-      post :create, schedule: { event_end: @schedule.event_end, event_start: @schedule.event_start, member_id: @schedule.member_id, venue: @schedule.venue }
+      post :create, schedule: { event_end: @schedule.event_end, event_start: @schedule.event_start, member_id: @schedule.member_id, venue: @schedule.venue, title: @schedule.title }
     end
 
     assert_redirected_to schedule_path(assigns(:schedule))
@@ -41,11 +41,11 @@ class SchedulesControllerTest < ActionController::TestCase
 
   test "should create schedule" do
     assert_difference('Schedule.count') do
-      post :create, schedule: { member_id: @schedule.member_id, event_start: @schedule.event_start, event_end: @schedule.event_end, venue: @schedule.venue }
+      post :create, schedule: { member_id: @schedule.member_id, event_start: @schedule.event_start, event_end: @schedule.event_end, venue: @schedule.venue, title: @schedule.title }
   end
   
   test "should update schedule" do
-    patch :update, id: @schedule, schedule: { member_id: @schedule.member_id, event_start: @schedule.event_start, event_end: @schedule.event_end, venue: @schedule.venue }
+    patch :update, id: @schedule, schedule: { member_id: @schedule.member_id, event_start: @schedule.event_start, event_end: @schedule.event_end, venue: @schedule.venue, title: @schedule.title }
     assert_redirected_to schedule_path(assigns(:schedule))
   end
   

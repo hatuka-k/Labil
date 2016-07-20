@@ -42,7 +42,7 @@ Message.create( member_id: 1, message: "I wanna go home...")
 Message.create( member_id: 3, message: "I wanna go home too")
 
 
-Schedule.create(:member_id => 1, :event_start => 'Mon, 30 May 2016 09:30:00', :event_end => 'Mon, 30 May 2016 11:00:00', :venue => 'A-1')
-Schedule.create(:member_id => 1, :event_start => 'Mon, 30 May 2016 13:30:00', :event_end => 'Mon, 30 May 2016 15:00:00', :venue => 'W101')
-Schedule.create(:member_id => 2, :event_start => 'Mon, 30 May 2016 09:30:00', :event_end => 'Mon, 30 May 2016 11:00:00', :venue => '藤田研')
-Schedule.create(:member_id => 2, :event_start => 'Mon, 30 May 2016 13:30:00', :event_end => 'Mon, 30 May 2016 15:00:00', :venue => 'W212')
+Schedule.create(:member_id => 1, :event_start => 'Mon, 30 May 2016 09:30:00', :event_end => 'Mon, 30 May 2016 11:00:00', :venue => 'A-1', :title => '休憩')
+Schedule.create(:member_id => 1, :event_start => 'Mon, 30 May 2016 13:30:00', :event_end => 'Mon, 30 May 2016 15:00:00', :venue => 'W101', :title => '講義')
+Schedule.create(:member_id => 2, :event_start => 'Mon, 30 May 2016 09:30:00', :event_end => 'Mon, 30 May 2016 11:00:00', :venue => '藤田研', :title => 'ゼミ')
+Schedule.create(:member_id => 2, :event_start => 'Mon, 30 May 2016 13:30:00', :event_end => 'Mon, 30 May 2016 15:00:00', :venue => 'W212', :title => '講義')
