@@ -1,5 +1,6 @@
 class SchedulesController < ApplicationController
   before_filter :authenticate_member!
+  #before_action :set_schedule, only: [ :edit, :update, :destroy]
   before_action :set_schedule, only: [:show, :edit, :update, :destroy]
 
 
@@ -12,6 +13,7 @@ class SchedulesController < ApplicationController
   # GET /schedules/1
   # GET /schedules/1.json
   def show
+    #@schedules = Schedule.where(member_id: current_member.id)
   end
 
   # GET /schedules/new
@@ -84,7 +86,7 @@ class SchedulesController < ApplicationController
     end
 
     def schedule_params   
-      params.require(:schedule).permit(:member_id, :event_start, :event_end, :venue, :flag)
+      params.require(:schedule).permit(:member_id, :event_start, :event_end, :venue, :flag, :title)
     end
   
     # Never trust parameters from the scary internet, only allow the white list through.    
