@@ -4,7 +4,7 @@ class CreateSchedules < ActiveRecord::Migration
       t.integer :member_id
       t.datetime :event_start
       t.datetime :event_end
-      t.string :venue
+      t.integer :venue
 
       t.timestamps null: false
     end
